@@ -39,45 +39,45 @@ func InsertMahasiswa(db *mongo.Database, col string, nama string, npm int, kelas
 	return InsertOneDoc(db, col, mahasiswa)
 }
 
-func InsertKelas(db *mongo.Database, col string, kode_kelas string, nama_kelas string, kapasitas int) (InsertedID interface{}) {
+func InsertKelas(db *mongo.Database, col string, kodekelas string, namakelas string, kapasitas int) (InsertedID interface{}) {
 	var kelas model.Kelas
-	kelas.Kode_kelas = kode_kelas
-	kelas.Nama_kelas =  nama_kelas
+	kelas.Kode_kelas = kodekelas
+	kelas.Nama_kelas =  namakelas
 	kelas.Kapasitas = kapasitas
 	return InsertOneDoc(db, col, kelas)
 }
 
-func InsertProdi(db *mongo.Database, col string, nama_prodi string, ketua_prodi string, fakultas string, kapasitas int) (InsertedID interface{}) {
+func InsertProdi(db *mongo.Database, col string, namaprodi string, ketuaprodi string, fakultas string, kapasitas int) (InsertedID interface{}) {
 	var prodi model.Prodi
-	prodi.Nama_prodi = nama_prodi
-	prodi.Ketua_prodi = ketua_prodi
+	prodi.Nama_prodi = namaprodi
+	prodi.Ketua_prodi = ketuaprodi
 	prodi.Fakultas = fakultas
 	prodi.Kapasitas = kapasitas
 	return InsertOneDoc(db, col, prodi)
 }
 
-func InsertMatkul(db *mongo.Database, col string, kode_matkul int, nama_matkul string, sks int, dosen_pengajar model.Dosen, jadwal_kuliah model.JadwalKuliah, ruang_kuliah model.RuangKuliah) (InsertedID interface{}) {
+func InsertMatkul(db *mongo.Database, col string, kodematkul int, namamatkul string, sks int, dosenpengajar model.Dosen, jadwalkuliah model.JadwalKuliah, ruangkuliah model.RuangKuliah) (InsertedID interface{}) {
 	var matkul model.MataKuliah
-	matkul.Kode_matkul = kode_matkul
-	matkul.Nama_matkul = nama_matkul
+	matkul.Kode_matkul = kodematkul
+	matkul.Nama_matkul = namamatkul
 	matkul.Sks = sks
-	matkul.Dosen_pengajar = dosen_pengajar
-	matkul.Jadwal_kuliah = jadwal_kuliah
-	matkul.Ruang_kuliah = ruang_kuliah
+	matkul.Dosen_pengajar = dosenpengajar
+	matkul.Jadwal_kuliah = jadwalkuliah
+	matkul.Ruang_kuliah = ruangkuliah
 	return InsertOneDoc(db, col, matkul)
 }
 
-func InsertDosen(db *mongo.Database, col string, nama_dosen string, nik string, bidang_studi string) (InsertedID interface{}) {
+func InsertDosen(db *mongo.Database, col string, namadosen string, nik string, bidangstudi string) (InsertedID interface{}) {
 	var dosen model.Dosen
-	dosen.Nama_dosen = nama_dosen
+	dosen.Nama_dosen = namadosen
 	dosen.Nik = nik
-	dosen.Bidang_studi = bidang_studi
+	dosen.Bidang_studi = bidangstudi
 	return InsertOneDoc(db, col, dosen)
 }
 
-func InsertRuang(db *mongo.Database, col string, nama_ruang string, kapasitas int, gedung string, lantai int) (InsertedID interface{}) {
+func InsertRuang(db *mongo.Database, col string, namaruang string, kapasitas int, gedung string, lantai int) (InsertedID interface{}) {
 	var ruang model.RuangKuliah
-	ruang.Nama_ruang = nama_ruang
+	ruang.Nama_ruang = namaruang
 	ruang.Kapasitas = kapasitas
 	ruang.Gedung = gedung
 	ruang.Lantai = lantai
@@ -102,54 +102,54 @@ func GetMahasiswaFromNpm(npm int, db *mongo.Database, col string) (mhs model.Mah
 	}
 	return mhs
 }
-func GetKelasFromKodeKelas(kode_kelas string, db *mongo.Database, col string) (kls model.Kelas) {
+func GetKelasFromKodeKelas(kodekelas string, db *mongo.Database, col string) (kls model.Kelas) {
 	kelas := db.Collection(col)
-	filter := bson.M{"kode_kelas": kode_kelas}
+	filter := bson.M{"kodekelas": kodekelas}
 	err := kelas.FindOne(context.TODO(), filter).Decode(&kls)
 	if err != nil {
 		fmt.Printf("GetKelasFromKodeKelas: %v\n", err)
 	}
 	return kls
 }
-func GetProdiFromNamaProdi(nama_prodi string, db *mongo.Database, col string) (prd model.Prodi) {
+func GetProdiFromNamaProdi(namaprodi string, db *mongo.Database, col string) (prd model.Prodi) {
 	prodi := db.Collection(col)
-	filter := bson.M{"nama_prodi": nama_prodi}
+	filter := bson.M{"namaprodi": namaprodi}
 	err := prodi.FindOne(context.TODO(), filter).Decode(&prd)
 	if err != nil {
 		fmt.Printf("GetProdiFromNamaProdi: %v\n", err)
 	}
 	return prd
 }
-func GetMatkulFromKodeMatkul(kode_matkul int, db *mongo.Database, col string) (mk model.MataKuliah) {
+func GetMatkulFromKodeMatkul(kodematkul int, db *mongo.Database, col string) (mk model.MataKuliah) {
 	matkul := db.Collection(col)
-	filter := bson.M{"kode_matkul": kode_matkul}
+	filter := bson.M{"kodematkul": kodematkul}
 	err := matkul.FindOne(context.TODO(), filter).Decode(&mk)
 	if err != nil {
 		fmt.Printf("GetMatkulFromKodeMatkul: %v\n", err)
 	}
 	return mk
 }
-func GetDosenFromNamaDosen(nama_dosen string, db *mongo.Database, col string) (dsn model.Dosen) {
+func GetDosenFromNamaDosen(namadosen string, db *mongo.Database, col string) (dsn model.Dosen) {
 	dosen := db.Collection(col)
-	filter := bson.M{"nama_dosen": nama_dosen}
+	filter := bson.M{"namadosen": namadosen}
 	err := dosen.FindOne(context.TODO(), filter).Decode(&dsn)
 	if err != nil {
 		fmt.Printf("GetDosenFromNamaDosen: %v\n", err)
 	}
 	return dsn
 }
-func GetRuangFromNamaRuang(nama_ruang string, db *mongo.Database, col string) (rgn model.RuangKuliah) {
+func GetRuangFromNamaRuang(namaruang string, db *mongo.Database, col string) (rgn model.RuangKuliah) {
 	ruang := db.Collection(col)
-	filter := bson.M{"nama_ruang": nama_ruang}
+	filter := bson.M{"namaruang": namaruang}
 	err := ruang.FindOne(context.TODO(), filter).Decode(&rgn)
 	if err != nil {
 		fmt.Printf("GetRuangFromNamaRuang: %v\n", err)
 	}
 	return rgn
 }
-func GetPresensiFromNamaMahasiswa(nama_mahasiswa string, db *mongo.Database, col string) (prs model.Presensi) {
+func GetPresensiFromNamaMahasiswa(namamahasiswa string, db *mongo.Database, col string) (prs model.Presensi) {
 	presensi := db.Collection(col)
-	filter := bson.M{"biodata.nama": nama_mahasiswa}
+	filter := bson.M{"biodata.nama": namamahasiswa}
 	err := presensi.FindOne(context.TODO(), filter).Decode(&prs)
 	if err != nil {
 		fmt.Printf("GetPresensiFromNamaMahasiswa: %v\n", err)
@@ -169,4 +169,18 @@ func GetAllPresensiFromKehadiran(kehadiran string, db *mongo.Database, col strin
 		fmt.Println(err)
 	}
 	return 
+}
+
+func GetAllPresensi(db *mongo.Database, col string) (data []model.Presensi) {
+	mahasiswa := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := mahasiswa.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
