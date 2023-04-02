@@ -172,9 +172,9 @@ func GetAllPresensiFromKehadiran(kehadiran string, db *mongo.Database, col strin
 }
 
 func GetAllPresensi(db *mongo.Database, col string) (data []model.Presensi) {
-	mahasiswa := db.Collection(col)
+	data_presensi := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := mahasiswa.Find(context.TODO(), filter)
+	cursor, err := data_presensi.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetALLData :", err)
 	}
@@ -182,5 +182,5 @@ func GetAllPresensi(db *mongo.Database, col string) (data []model.Presensi) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	return
+	return data
 }

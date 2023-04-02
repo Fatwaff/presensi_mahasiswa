@@ -72,7 +72,7 @@ func TestInsertRuang(t *testing.T) {
 func TestInsertPresensi(t *testing.T) {
 	kehadiran := "masuk"
 	biodata := model.Mahasiswa{
-		Nama :  "Dirga Febrian",
+		Nama :  "test",
 		Npm : 1214038,
 		Nama_kelas :  model.Kelas{
 			Nama_kelas : "2B",
@@ -132,7 +132,7 @@ func TestGetRuangFromNamaRuang(t *testing.T) {
 	fmt.Println(data)
 }
 func TestGetPresensiFromNamaMahasiswa(t *testing.T) {
-	namamahasiswa := "Dirga Febrian"
+	namamahasiswa := "test"
 	data := module.GetPresensiFromNamaMahasiswa(namamahasiswa, module.MongoConn, "presensi")
 	fmt.Println(data)
 }
