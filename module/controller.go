@@ -172,11 +172,95 @@ func GetAllPresensiFromKehadiran(kehadiran string, db *mongo.Database, col strin
 }
 
 func GetAllPresensi(db *mongo.Database, col string) (data []model.Presensi) {
-	data_presensi := db.Collection(col)
+	dataPresensi := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := data_presensi.Find(context.TODO(), filter)
+	cursor, err := dataPresensi.Find(context.TODO(), filter)
 	if err != nil {
-		fmt.Println("GetALLData :", err)
+		fmt.Println("GetAllPresensi :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllMahasiswa(db *mongo.Database, col string) (data []model.Mahasiswa) {
+	dataMahasiswa := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataMahasiswa.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllMahasiswa :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllKelas(db *mongo.Database, col string) (data []model.Kelas) {
+	dataKelas := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataKelas.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllKelas :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllProdi(db *mongo.Database, col string) (data []model.Prodi) {
+	dataProdi := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataProdi.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllProdi :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllMataKuliah(db *mongo.Database, col string) (data []model.MataKuliah) {
+	dataMataKuliah := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataMataKuliah.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllMataKuliah :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllDosen(db *mongo.Database, col string) (data []model.Dosen) {
+	dataDosen := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataDosen.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllDosen :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return data
+}
+
+func GetAllRuangKuliah(db *mongo.Database, col string) (data []model.RuangKuliah) {
+	dataRuangKuliah := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := dataRuangKuliah.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetAllRuangKuliah :", err)
 	}
 	err = cursor.All(context.TODO(), &data)
 	if err != nil {

@@ -9,8 +9,8 @@ import (
 )
 
 func TestInsertMahasiswa(t *testing.T) {
-	nama := "Dirga Febrian"
-	npm := 1214039
+	nama := "test"
+	npm := 12140301
 	kelas := model.Kelas{
 		Nama_kelas :  "2B",
 	}
@@ -22,47 +22,47 @@ func TestInsertMahasiswa(t *testing.T) {
 	fmt.Println(hasil)
 }
 func TestInsertKelas(t *testing.T) {
-	kodekelas := "L3-14"
-	namakelas := "Lab 14"
+	kodekelas := "TI-B2"
+	namakelas := "2B"
 	kapasitas := 40
 	hasil := module.InsertKelas(module.MongoConn, "kelas", kodekelas, namakelas, kapasitas)
 	fmt.Println(hasil)
 }
 func TestInsertProdi(t *testing.T) {
-	namaprodi := "D4 Teknik Informatika"
-	ketuaprodi := "Roni Andarsyah"
-	fakultas := "Sekolah Vokasi"
-	kapasitas := 500
+	namaprodi := "Manajemen Bisnis"
+	ketuaprodi := "Peter Parker"
+	fakultas := "Vokasi"
+	kapasitas := 1500
 	hasil := module.InsertProdi(module.MongoConn, "prodi", namaprodi, ketuaprodi, fakultas, kapasitas)
 	fmt.Println(hasil)
 }
 func TestInserMatkul(t *testing.T) {
-	kodematkul := 21711
-	namamatkul := "Pemrograman 3"
+	kodematkul := 21682
+	namamatkul := "Kewirausahaan"
 	sks := 3
 	dosenpengajar := model.Dosen{
-		Nama_dosen :  "Indra Riksa Herlambang",
+		Nama_dosen :  "Bheben oscar,. S.MB.MM",
 	}
 	jadwalkuliah := model.JadwalKuliah{
-		Jam_masuk :   "13:30",
-		Jam_keluar :  "17:00",
-		Hari : "Jum'at",
+		Jam_masuk :   "10:20",
+		Jam_keluar :  "12:00",
+		Hari : "Selasa",
 	}
 	ruangkuliah := model.RuangKuliah{
-		Nama_ruang :   "Lab 314",
+		Nama_ruang :   "Ruang 102",
 	}
 	hasil := module.InsertMatkul(module.MongoConn, "matkul", kodematkul, namamatkul, sks, dosenpengajar, jadwalkuliah, ruangkuliah)
 	fmt.Println(hasil)
 }
 func TestInsertDosen(t *testing.T) {
-	namadosen := "Indra Riksa Herlambang"
-	nik := "123.45.678"
+	namadosen := "test"
+	nik := "111.22.333"
 	bidangstudi := "Teknik Informatika"
 	hasil := module.InsertDosen(module.MongoConn, "dosen", namadosen, nik, bidangstudi)
 	fmt.Println(hasil)
 }
 func TestInsertRuang(t *testing.T) {
-	namaruang := "Lab 314"
+	namaruang := "Lab 312"
 	kapasitas := 40
 	gedung := "Pendidikan"
 	lantai := 3
@@ -73,7 +73,7 @@ func TestInsertPresensi(t *testing.T) {
 	kehadiran := "masuk"
 	biodata := model.Mahasiswa{
 		Nama :  "test",
-		Npm : 1214038,
+		Npm : 12140301,
 		Nama_kelas :  model.Kelas{
 			Nama_kelas : "2B",
 		},
@@ -143,5 +143,29 @@ func TestGetAllPresensiFromKehadiran(t *testing.T) {
 }
 func TestGetAllPresensi(t *testing.T) {
 	data := module.GetAllPresensi(module.MongoConn, "presensi")
+	fmt.Println(data)
+}
+func TestGetAllMahasiswa(t *testing.T) {
+	data := module.GetAllMahasiswa(module.MongoConn, "mahasiswa")
+	fmt.Println(data)
+}
+func TestGetAllKelas(t *testing.T) {
+	data := module.GetAllKelas(module.MongoConn, "kelas")
+	fmt.Println(data)
+}
+func TestGetAllProdi(t *testing.T) {
+	data := module.GetAllProdi(module.MongoConn, "prodi")
+	fmt.Println(data)
+}
+func TestGetAllMataKuliah(t *testing.T) {
+	data := module.GetAllMataKuliah(module.MongoConn, "matkul")
+	fmt.Println(data)
+}
+func TestGetAllDosen(t *testing.T) {
+	data := module.GetAllDosen(module.MongoConn, "dosen")
+	fmt.Println(data)
+}
+func TestGetAllRuangKuliah(t *testing.T) {
+	data := module.GetAllRuangKuliah(module.MongoConn, "ruang")
 	fmt.Println(data)
 }
