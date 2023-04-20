@@ -169,3 +169,7 @@ func TestGetAllRuangKuliah(t *testing.T) {
 	data := module.GetAllRuangKuliah(module.MongoConn, "ruang")
 	fmt.Println(data)
 }
+func TestGetAllRuangKuliahTest(t *testing.T) {
+	var ruang []model.RuangKuliah
+	module.GetAllRuangKuliahTest(module.MongoConn, "ruang", ruang)
+}
