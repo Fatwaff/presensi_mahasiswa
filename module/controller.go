@@ -269,7 +269,7 @@ func GetAllRuangKuliah(db *mongo.Database, col string) (data []model.RuangKuliah
 	return data
 }
 
-func GetAllRuangKuliahTest(db *mongo.Database, col string, data interface{}) {
+func GetAllRuangKuliahTest(db *mongo.Database, col string, data interface{}) interface{} {
 	dataRuangKuliah := db.Collection(col)
 	filter := bson.M{}
 	cursor, err := dataRuangKuliah.Find(context.TODO(), filter)
@@ -280,5 +280,5 @@ func GetAllRuangKuliahTest(db *mongo.Database, col string, data interface{}) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(data)
+	return data
 }
