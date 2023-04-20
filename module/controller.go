@@ -280,4 +280,5 @@ func GetAllRuangKuliahTest(db *mongo.Database, col string, data interface{}) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(data)
 }
